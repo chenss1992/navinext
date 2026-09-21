@@ -1,11 +1,37 @@
+```yaml
 services:
   navinext:
     image: sosooan/navinext:latest
     container_name: navinext
     restart: unless-stopped
+
     ports:
       - "8089:8000"
-    env_file:
-      - .env
+
+    environment:
+      # NaviNest
+      APP_NAME: NaviNest
+      APP_SECRET: "请修改为随机长字符串"
+      ADMIN_USERNAME: admin
+      ADMIN_PASSWORD: "请修改管理员密码"
+      TIMEZONE: Asia/Shanghai
+
+      # Navidrome
+      NAVIDROME_URL: "http://192.168.1.100:4533"
+      NAVIDROME_USERNAME: admin
+      NAVIDROME_PASSWORD: "你的Navidrome管理员密码"
+
+      # Telegram
+      TELEGRAM_BOT_TOKEN: ""
+      TELEGRAM_ADMIN_IDS: "12345678"
+      TELEGRAM_DAILY_REPORT_ENABLED: "true"
+      TELEGRAM_WEEKLY_REPORT_ENABLED: "true"
+      TELEGRAM_MONTHLY_REPORT_ENABLED: "true"
+      TELEGRAM_EXPIRE_REMINDER_ENABLED: "true"
+      REPORT_HOUR: "9"
+      EXPIRE_REMINDER_DAYS: "7,3,1,0"
+      TASK_INTERVAL_MINUTES: "10"
+
     volumes:
       - ./data:/app/data
+```
