@@ -1,0 +1,11 @@
+services:
+  navinext:
+    image: sosooan/navinext:latest
+    container_name: navinext
+    restart: unless-stopped
+    ports:
+      - "8089:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
